@@ -1,9 +1,9 @@
 import piexif
 
-from image2gps.config import LOGGER, LocationType
+from image2gps.config import LOGGER, CoordsType
 
 
-def parse_location(exif: dict) -> LocationType:
+def parse_coords(exif: dict) -> CoordsType:
     gps = exif.get('GPS')
     if gps is None or len(gps) == 0:
         return None

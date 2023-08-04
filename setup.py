@@ -24,7 +24,7 @@ def read_file(filename: str) -> str:
 setup(
     name=PACKAGE_NAME,
     version=get_version(),
-    description='Extract time and location from image 🖼📍⏱️',
+    description='Extract time and coords from image 🖼📍⏱️',
     long_description=load_readme(),
     long_description_content_type='text/markdown',
     author='Alex Ermolaev',

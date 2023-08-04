@@ -1,15 +1,15 @@
 # image2gps
 
-Extract time and location from image 🖼📍⏱️
+Extract time and coords from image 🖼📍⏱️
 
 ![demo](demo.jpg)
-_[Image source](https://github.com/ianare/exif-samples/blob/master/jpg/gps/DSCN0010.jpg)_
+_[Image source](https://github.com/ianare/exif-samples/blb/master/jpg/gps/DSCN0010.jpg)_
 
 ```python
 from image2gps import image2gps
 
-time, location = image2gps('demo.jpg')
-print(f'Image taken in {location} at {time}')
+time, coords = image2gps('demo.jpg')
+print(f'Image taken in {coords} at {time}')
 # >>> Image taken in (43.467, 11.885) at 2008-11-01 21:15:07
 ```
 

@@ -4,10 +4,10 @@ import re
 import loguru
 
 TimeType = datetime.datetime | None
-LocationType = tuple[float, float] | None
+CoordsType = tuple[float, float] | None
 
 LOGGER = loguru.logger
-MIN_LOCATION_DATE = datetime.datetime(1960, 1, 1)
+MIN_LOCATION_TIME = datetime.datetime(1960, 1, 1)
 MAX_LOCATION_TIMEDELTA = datetime.timedelta(days=10)
 
 # todo more patterns

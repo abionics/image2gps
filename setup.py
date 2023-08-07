@@ -36,6 +36,7 @@ setup(
         'loguru',
         'pillow',
         'piexif',
+        'cachetools',
     ],
     classifiers=[
         'Intended Audience :: Developers',

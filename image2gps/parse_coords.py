@@ -1,6 +1,10 @@
 import piexif
+from cachetools import LRUCache
 
-from image2gps.config import LOGGER, CoordsType
+from image2gps.config import CoordsType, FAILED_CACHE_SIZES
+from image2gps.failed import on_fail
+
+FAILED_CACHE = LRUCache(FAILED_CACHE_SIZES)
 
 
 def parse_coords(exif: dict) -> CoordsType:
@@ -10,7 +14,8 @@ def parse_coords(exif: dict) -> CoordsType:
     lat = gps.get(piexif.GPSIFD.GPSLatitude)
     lon = gps.get(piexif.GPSIFD.GPSLongitude)
     if lat is None or lon is None:
-        LOGGER.debug(f'Failed to parse GPS "{gps}"')
+        gps_hash = hash(str(gps))
+        on_fail(gps_hash, f'Failed to parse GPS "{gps}"')
         return None
     lat, lon = _value_to_degrees(lat), _value_to_degrees(lon)
     if lat == 0 and lon == 0:

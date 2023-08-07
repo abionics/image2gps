@@ -4,12 +4,12 @@ import piexif
 
 from image2gps.config import (
     TimeType,
-    LOGGER,
     MIN_LOCATION_TIME,
     MAX_LOCATION_TIMEDELTA,
     TIME_PATTERN,
     DATETIME_PATTENS,
 )
+from image2gps.failed import on_fail
 
 
 def parse_time(exif: dict) -> TimeType:
@@ -23,11 +23,13 @@ def parse_time(exif: dict) -> TimeType:
             return None
         time = _string_to_datetime(time)
     except Exception as e:
-        LOGGER.debug(f'Failed to parse time "{time}" due to {e} ({type(e)})')
+        time_hash = hash(str(time))
+        on_fail(time_hash, f'Failed to parse time "{time}" due to {e} ({type(e)})')
         return None
     max_date = datetime.datetime.now() + MAX_LOCATION_TIMEDELTA
     if time < MIN_LOCATION_TIME or time > max_date:
-        LOGGER.debug(f'Date "{time}" is out of range')
+        time_hash = hash(str(time))
+        on_fail(time_hash, f'Date "{time}" is out of range')
         return None
     return time
 

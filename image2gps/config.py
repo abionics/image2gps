@@ -7,6 +7,8 @@ TimeType = datetime.datetime | None
 CoordsType = tuple[float, float] | None
 
 LOGGER = loguru.logger
+FAILED_CACHE_SIZES = 65536
+
 MIN_LOCATION_TIME = datetime.datetime(1960, 1, 1)
 MAX_LOCATION_TIMEDELTA = datetime.timedelta(days=10)
 

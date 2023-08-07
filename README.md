@@ -26,7 +26,11 @@ pip install image2gps
 ## Tests
 
 ```bash
-python -m pytest tests/test.py
+python -m pytest tests
+
+# or only certain tests
+python -m pytest tests/test_main.py
+python -m pytest tests/test_time.py
 ```
 
 

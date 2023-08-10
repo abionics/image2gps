@@ -9,7 +9,10 @@ FAILED_CACHE = LRUCache(FAILED_CACHE_SIZES)
 
 def parse_coords(exif: dict) -> CoordsType:
     gps = exif.get('GPS')
-    if gps is None or len(gps) == 0:
+    if gps is None:
+        return None
+    gps.pop(piexif.GPSIFD.GPSVersionID, None)
+    if len(gps) == 0:
         return None
     lat = gps.get(piexif.GPSIFD.GPSLatitude)
     lon = gps.get(piexif.GPSIFD.GPSLongitude)
